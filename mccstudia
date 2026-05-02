@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МСС — Смыслы, манифест, сайт | Находим ДНК бизнеса и упаковываем в лендинг</title>
+    <meta name="description" content="Студия МСС создаёт смыслы, манифест и ценности бренда. Упаковываем ДНК бизнеса в продающий лендинг. Три тарифа: от 30 000 до 90 000 ₽. Основатель Юлия. +7 923 570-33-35">
+    <meta name="keywords" content="смыслы бренда, манифест бренда, ценности бренда, ДНК бизнеса, продающий лендинг, маркетинговый сайт, студия смыслов, МСС, Юлия, сайт со смыслом, бренд-стратегия">
+    <meta property="og:title" content="МСС — Смыслы, манифест, сайт">
+    <meta property="og:description" content="Находим ДНК бизнеса, создаём манифест и ценности, упаковываем в продающий лендинг. Три тарифа: от 30 000 до 90 000 ₽.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --bg2: #111118;
+            --bg3: #18181f;
+            --accent: #c8a96e;
+            --accent2: #e8c989;
+            --text: #f0ede8;
+            --muted: #8a8880;
+            --border: rgba(200, 169, 110, 0.18);
+            --white: #ffffff;
+            --danger: #e05a2a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Golos Text', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--text);
+        }
+
+        nav a.cta-nav {
+            background: var(--accent);
+            color: #0a0a0f;
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        nav a.cta-nav:hover {
+            background: var(--accent2);
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 2rem 5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 2rem;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: clamp(2.5rem, 6vw, 4.8rem);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--muted);
+            max-width: 620px;
+            margin-bottom: 2.5rem;
+            line-height: 1.65;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: #0a0a0f;
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.9rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent2);
+            transform: translateY(-1px);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: transparent;
+            color: var(--text);
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.9rem 1.5rem;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--accent);
+        }
+
+        .hero-proof {
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .proof-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .proof-num {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .proof-label {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-top: 0.2rem;
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 1.5rem;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h2 {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: clamp(1.7rem, 3.8vw, 2.8rem);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        h2 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .section-desc {
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        .top-quote-section {
+            background: var(--bg3);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .top-quote {
+            font-family: 'Golos Text', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        .top-quote em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .problem-section {
+            background: var(--bg2);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--bg3);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            padding: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--danger);
+            opacity: 0.6;
+        }
+
+        .problem-icon {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        .problem-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .meaning-section {
+            background: var(--bg);
+        }
+
+        .meaning-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .meaning-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.2s;
+        }
+
+        .meaning-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .meaning-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        .meaning-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+
+        .meaning-card h3 {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .meaning-card p {
+            font-size: 0.92rem;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .process-section {
+            background: var(--bg2);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+
+        .step-num {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: rgba(200, 169, 110, 0.15);
+            line-height: 1;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-title {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-desc {
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .pricing-section {
+            background: var(--bg);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--accent);
+        }
+
+        .pricing-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .pricing-name {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.04em;
+        }
+
+        .pricing-price {
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 2.8rem;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-sub {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+
+        .pricing-list li {
+            font-size: 0.88rem;
+            color: var(--muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+        }
+
+        .pricing-list li::before {
+            content: '✦';
+            color: var(--accent);
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+        }
+
+        .pricing-cta {
+            display: block;
+            text-align: center;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .pricing-cta:hover {
+            background: var(--accent);
+            color: #0a0a0f;
+        }
+
+        .pricing-card.featured .pricing-cta {
+            background: var(--accent);
+            color: #0a0a0f;
+        }
+
+        .pricing-card.featured .pricing-cta:hover {
+            background: var(--accent2);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: #0a0a0f;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.7rem;
+            border-radius: 3px;
+            letter-spacing: 0.05em;
+        }
+
+        .quote-section {
+            background: var(--bg3);
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quote-wrap {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .quote-photo {
+            width: 130px;
+            height: 130px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            background: var(--bg3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .quote-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .quote-text blockquote {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 300;
+            font-style: italic;
+            color: var(--text);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.02em;
+            opacity: 0.85;
+        }
+
+        .quote-text blockquote em {
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        .quote-author {
+            color: var(--accent);
+            font-size: 0.88rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.15rem;
+        }
+
+        .quote-role {
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 300;
+            letter-spacing: 0.03em;
+        }
+
+        .manifest-section {
+            background: var(--bg2);
+        }
+
+        .manifest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .manifest-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2.2rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.25s, transform 0.2s;
+        }
+
+        .manifest-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .manifest-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+
+        .manifest-icon {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+            line-height: 1;
+        }
+
+        .manifest-card h3 {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+
+        .manifest-card p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .faq-section {
+            background: var(--bg);
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: 2.5rem;
+            max-width: 800px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            width: 100%;
+            background: var(--bg2);
+            border: none;
+            padding: 1.4rem 1.8rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: background 0.2s;
+        }
+
+        .faq-q:hover {
+            background: var(--bg3);
+        }
+
+        .faq-q.open {
+            color: var(--accent);
+        }
+
+        .faq-arrow {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            border: 1.5px solid var(--muted);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.25s, border-color 0.2s;
+            font-size: 0.7rem;
+        }
+
+        .faq-q.open .faq-arrow {
+            transform: rotate(45deg);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.25s;
+            background: var(--bg);
+        }
+
+        .faq-a.open {
+            max-height: 500px;
+        }
+
+        .faq-a-inner {
+            padding: 1.2rem 1.8rem 1.6rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.75;
+        }
+
+        .form-section {
+            background: var(--bg2);
+        }
+
+        .form-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .form-left h2 {
+            margin-bottom: 1rem;
+        }
+
+        .form-left p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .contact-line {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .contact-line strong {
+            color: var(--text);
+        }
+
+        .contact-line a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        form {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        form label {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-bottom: -0.5rem;
+            letter-spacing: 0.04em;
+        }
+
+        form input,
+        form textarea,
+        form select {
+            background: var(--bg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            color: var(--text);
+            font-family: 'Golos Text', sans-serif;
+            font-size: 0.95rem;
+            padding: 0.75rem 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+
+        form input:focus,
+        form textarea:focus,
+        form select:focus {
+            border-color: var(--accent);
+        }
+
+        form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        form select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        form button {
+            background: var(--accent);
+            color: #0a0a0f;
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.95rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            margin-top: 0.5rem;
+        }
+
+        form button:hover {
+            background: var(--accent2);
+            transform: translateY(-1px);
+        }
+
+        .form-privacy {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .success-msg {
+            display: none;
+            background: rgba(100, 200, 120, 0.1);
+            border: 1px solid rgba(100, 200, 120, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #8fe0a0;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+            position: relative;
+            z-index: 1;
+        }
+
+        footer .footer-brand {
+            font-family: 'Golos Text', sans-serif;
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .sticky-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            padding: 1rem;
+            background: rgba(10, 10, 15, 0.95);
+            border-top: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+        }
+
+        .sticky-cta a {
+            display: block;
+            text-align: center;
+            background: var(--accent);
+            color: #0a0a0f;
+            font-family: 'Golos Text', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(200, 169, 110, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(200, 169, 110, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .hero-glow {
+            position: absolute;
+            top: 20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(200, 169, 110, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        @media (max-width: 860px) {
+            nav {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 4rem 1.2rem;
+            }
+
+            .hero {
+                padding: 6rem 1.2rem 3rem;
+            }
+
+            .form-wrap {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .meaning-grid,
+            .manifest-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .quote-wrap {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .quote-photo {
+                width: 110px;
+                height: 110px;
+            }
+
+            .quote-text blockquote {
+                font-size: 1rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .sticky-cta {
+                display: block;
+            }
+
+            nav a.cta-nav {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 5rem;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-proof {
+                gap: 1.5rem;
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero>* {
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .hero>*:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .hero>*:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .hero>*:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .hero>*:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .hero>*:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">МСС<span>·студия</span></a>
+        <a href="#contact" class="cta-nav">Найти смыслы →</a>
+    </nav>
+
+    <section style="padding:0; position:relative; overflow:hidden;">
+        <div class="hero-bg"></div>
+        <div class="hero-glow"></div>
+        <div class="hero">
+            <div class="hero-eyebrow">Студия смыслов МСС</div>
+            <h1>Сначала <em>смыслы</em>.<br>Потом сайт.</h1>
+            <p class="hero-sub">Нахожу ДНК вашего бизнеса, создаю манифест и ценности. Упаковываю в продающий лендинг, который говорит с клиентом на одном языке.</p>
+            <div class="hero-cta-row">
+                <a href="#contact" class="btn-primary">Найти смыслы моего бизнеса →</a>
+                <a href="#meaning" class="btn-ghost">Что такое смыслы и манифест</a>
+            </div>
+            <div class="hero-proof">
+                <div class="proof-item">
+                    <span class="proof-num">ДНК</span>
+                    <span class="proof-label">бренда</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-num">Манифест</span>
+                    <span class="proof-label">и ценности</span>
+                </div>
+                <div class="proof-item">
+                    <span class="proof-num">Сайт</span>
+                    <span class="proof-label">как носитель смыслов</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="top-quote-section">
+        <p class="top-quote">
+            Большинство бизнесов знают, <em>что</em> они делают.<br>Я нахожу — <em>зачем</em>. И это меняет всё.
+        </p>
+    </div>
+
+    <section class="problem-section" id="problem">
+        <div class="container">
+            <div class="section-label">Проблема</div>
+            <h2>Почему «просто сайт»<br><em>не работает</em></h2>
+            <p class="section-desc">Красивый дизайн и кнопка «Заказать» не продают. Продаёт — суть. Которой нет на большинстве сайтов.</p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🧬</div>
+                    <h3>Сайт без ДНК</h3>
+                    <p>Дизайн есть, а личность бренда — нет. Уберите логотип — и не поймёте, чей это сайт: ваш или конкурента.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📄</div>
+                    <h3>Тексты без манифеста</h3>
+                    <p>«Мы надёжные», «индивидуальный подход» — это пишут все. Нет главного документа: манифеста, который говорит, зачем вы существуете.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">👤</div>
+                    <h3>Клиент не чувствует разницы</h3>
+                    <p>Выбор между вами и конкурентом сводится к цене. Потому что клиенту не показали, в чём ваша уникальность.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>Сайт без стратегии</h3>
+                    <p>Он создан без понимания, кто ваш клиент и что ему важно. В итоге — посетитель не видит причин выбрать именно вас и уходит.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="meaning-section" id="meaning">
+        <div class="container">
+            <div class="section-label">Продукт</div>
+            <h2>Что такое <em>смыслы и манифест</em></h2>
+            <p class="section-desc">Это не абстракции. Это конкретные документы, из которых потом рождается сайт, тексты, скрипты и вся коммуникация бренда.</p>
+            <div class="meaning-grid">
+                <div class="meaning-card">
+                    <div class="meaning-icon">🧬</div>
+                    <h3>Смыслы — ДНК бренда</h3>
+                    <p>Не «что вы делаете», а «зачем вы это делаете». Не «печём хлеб», а «каждое утро дарим городу запах свежей выпечки». Это глубинное основание, из которого растёт всё: тексты, дизайн, общение с клиентами.</p>
+                </div>
+                <div class="meaning-card">
+                    <div class="meaning-icon">📜</div>
+                    <h3>Манифест бренда</h3>
+                    <p>Документ, который отвечает на вопрос: «Зачем существует ваш бизнес?» Это не слоган. Это внутренний закон, по которому живёт компания. На его основе пишутся тексты, скрипты, посты.</p>
+                </div>
+                <div class="meaning-card">
+                    <div class="meaning-icon">💎</div>
+                    <h3>Ценности</h3>
+                    <p>3–5 принципов, которые нельзя нарушать. Не «качество и сервис», а «шеф лично пробует каждое блюдо перед подачей». Конкретные, живые, проверяемые.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process-section" id="process">
+        <div class="container">
+            <div class="section-label">Как работаем</div>
+            <h2>4 этапа<br><em>смысловой работы</em></h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Погружение</div>
+                    <p class="step-desc">Созвон или интервью. Задаю вопросы, на которые вы, возможно, не отвечали себе раньше. Ищем суть.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">2</div>
+                    <div class="step-title">Смыслы и манифест</div>
+                    <p class="step-desc">Формулирую ДНК, манифест, ценности. Согласовываем. Это главный этап.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Тексты</div>
+                    <p class="step-desc">На основе манифеста пишу каждый блок сайта. Не «продающие тексты», а смысловые — те, что отражают суть.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-num">4</div>
+                    <div class="step-title">Сайт</div>
+                    <p class="step-desc">Верстаю, адаптирую, запускаю. Сайт — лишь носитель найденных смыслов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-label">Тарифы</div>
+            <h2>Три <em>тарифа</em></h2>
+            <p class="section-desc">Выберите тот, который подходит вашему бизнесу. Фиксированная цена. Без скрытых платежей.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-name">Смыслы + Манифест</div>
+                    <div class="pricing-price">30 000 ₽</div>
+                    <p class="pricing-sub">Стратегия без сайта</p>
+                    <ul class="pricing-list">
+                        <li>Глубинный аудит и поиск ДНК</li>
+                        <li>Манифест бренда (документ)</li>
+                        <li>Ценности бренда (3–5 принципов)</li>
+                        <li>Смысловое ядро для будущего сайта</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Обсудить →</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Основной</div>
+                    <div class="pricing-name">Смыслы + Сайт</div>
+                    <div class="pricing-price">60 000 ₽</div>
+                    <p class="pricing-sub">Стратегия + реализация</p>
+                    <ul class="pricing-list">
+                        <li>Глубинный аудит и поиск ДНК</li>
+                        <li>Манифест бренда (документ)</li>
+                        <li>Ценности бренда (3–5 принципов)</li>
+                        <li>Продающий лендинг на основе смыслов</li>
+                        <li>Тексты, написанные из манифеста</li>
+                        <li>Дизайн в атмосфере бренда</li>
+                        <li>Адаптация под все устройства</li>
+                        <li>Базовая SEO-оптимизация</li>
+                        <li>Правки до утверждения</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Найти смыслы →</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">ДНК под ключ</div>
+                    <div class="pricing-price">90 000 ₽</div>
+                    <p class="pricing-sub">Полный пакет</p>
+                    <ul class="pricing-list">
+                        <li>Всё из тарифа «Смыслы + Сайт»</li>
+                        <li>Визуальный код бренда</li>
+                        <li>Генерация имиджевых изображений</li>
+                        <li>Смысловые тексты для соцсетей (5 шт.)</li>
+                        <li>Стратегия контента на 1 месяц</li>
+                        <li>30 дней поддержки после сдачи</li>
+                    </ul>
+                    <a href="#contact" class="pricing-cta">Обсудить →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="quote-section">
+        <div class="quote-wrap">
+            <div class="quote-photo">
+                <img src="https://i.ibb.co/Fbh3Dcb8/IMG-0698.jpg" alt="Юлия, основатель МСС">
+            </div>
+            <div class="quote-text">
+                <blockquote>
+                    «У каждого бизнеса есть ДНК. Его нельзя придумать — его можно только найти. <em>Я нахожу его, формулирую и упаковываю в сайт</em>, который говорит с клиентом на одном языке».
+                </blockquote>
+                <p class="quote-author">Юлия</p>
+                <p class="quote-role">Основатель и владелец студии МСС</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="manifest-section" id="manifest">
+        <div class="container">
+            <div class="section-label">Манифест МСС</div>
+            <h2>Принципы,<br><em>в которые я верю</em></h2>
+            <p class="section-desc">Это не просто слова. Это то, как я работаю каждый день.</p>
+            <div class="manifest-grid">
+                <div class="manifest-card">
+                    <div class="manifest-icon">⚡</div>
+                    <h3>Сначала суть — потом форма</h3>
+                    <p>Я не начинаю с дизайна. Я начинаю с вопроса «зачем». Сайт — это лишь носитель смыслов, а не наоборот.</p>
+                </div>
+                <div class="manifest-card">
+                    <div class="manifest-icon">🤖</div>
+                    <h3>Нейросети как команда</h3>
+                    <p>Под моим управлением работают ИИ-инструменты: копирайтер, аналитик, SEO-специалист. Скорость агентства — ответственность одного человека.</p>
+                </div>
+                <div class="manifest-card">
+                    <div class="manifest-icon">💎</div>
+                    <h3>Спокойная уверенность</h3>
+                    <p>Я перевожу ваш профессионализм на язык, понятный клиенту. Без крикливых обещаний. Ясность, которая ведёт к действию.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-label">Вопросы и ответы</div>
+            <h2>У вас есть вопросы —<br><em>у меня есть ответы</em></h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Чем смыслы отличаются от обычных текстов?
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Обычный текст говорит: «Мы печём вкусный хлеб». Смысл говорит: «Каждое утро дарим городу запах свежей выпечки». Первое — описание услуги. Второе — обещание ощущения. Клиент покупает ощущение, а не муку и воду.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Зачем мне манифест? У меня просто стоматология / ресторан / отель
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Манифест — это ответ на вопрос «Почему вы?». Без него все тексты и коммуникации разрознены. С ним — каждый менеджер, каждый пост, каждая страница сайта говорит одним голосом. Это делает бренд цельным и дорогим в глазах клиента.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Сколько времени занимает создание манифеста и сайта?
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Поиск смыслов и манифест — 3–5 дней. Сайт — 7–10 дней. Общий срок — 2–3 недели в зависимости от сложности. Срочные проекты обсуждаем.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Что мне нужно подготовить для старта?
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Логотип (если есть), фотографии и 30–40 минут на интервью. Я задаю вопросы, на которые вы, возможно, не отвечали себе раньше. Никаких громоздких брифов.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Вы работаете с любой нишей?
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Моя специализация — «твёрдый» бизнес: стоматологии, клиники, рестораны, отели, производства. Но методология поиска ДНК универсальна. Если ваш бизнес не попадает в эти категории — напишите, обсудим.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Я получу готовый сайт или только документы?
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Зависит от тарифа. В «Смыслы + Манифест» — документы с ДНК, манифестом и ценностями. В «Смыслы + Сайт» и «ДНК под ключ» — документы + готовый лендинг на хостинге, полностью рабочий.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Как происходит оплата?
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Предоплата 50% перед стартом, остаток — после сдачи готового сайта и вашего одобрения. Работаю по договору или счёту.</div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        Что если мне не понравится манифест?
+                        <span class="faq-arrow">+</span>
+                    </button>
+                    <div class="faq-a">
+                        <div class="faq-a-inner">Манифест — это результат совместной работы. Я не придумываю его в одиночку, а нахожу вместе с вами. Если что-то не откликается — дорабатываю. Финальный платёж только после вашего «принято».</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="contact">
+        <div class="container">
+            <div class="form-wrap">
+                <div class="form-left">
+                    <div class="section-label">Контакты</div>
+                    <h2>Найдём смыслы<br><em>вашего бизнеса</em></h2>
+                    <p>Напишите — и я задам 3 вопроса, которые помогут понять, есть ли у вашего бизнеса характер. Это не бриф. Это начало поиска ДНК.</p>
+                    <div class="contact-lines">
+                        <div class="contact-line">
+                            <span>💬 Telegram:</span>
+                            <strong><a href="https://t.me/+79235703335">+7 923 570-33-35</a></strong>
+                        </div>
+                        <div class="contact-line">
+                            <span>📞 Телефон:</span>
+                            <strong><a href="tel:+79235703335">+7 923 570-33-35</a></strong>
+                        </div>
+                        <div class="contact-line" style="margin-top:1rem; font-size:0.8rem;">
+                            Юлия, основатель МСС. Отвечаю лично.
+                        </div>
+                    </div>
+                </div>
+
+                <form id="mainForm" onsubmit="submitForm(event)">
+                    <label>Ваше имя</label>
+                    <input type="text" name="name" placeholder="Как вас зовут?" required>
+
+                    <label>Телефон или Telegram</label>
+                    <input type="text" name="contact" placeholder="+7 ___ или @username" required>
+
+                    <label>Сфера бизнеса</label>
+                    <select name="industry">
+                        <option value="">Выберите нишу</option>
+                        <option>Стоматология</option>
+                        <option>Медицинский центр / клиника</option>
+                        <option>Ресторан</option>
+                        <option>Глэмпинг / отель</option>
+                        <option>Юридическая фирма</option>
+                        <option>Завод / производство</option>
+                        <option>Металлообработка</option>
+                        <option>Производство мебели</option>
+                        <option>Кровля и стройматериалы</option>
+                        <option>Логистика</option>
+                        <option>Клининг</option>
+                        <option>Охранное предприятие</option>
+                        <option>Другое</option>
+                    </select>
+
+                    <label>Что хотите получить?</label>
+                    <textarea name="message" placeholder="Расскажите о задаче: нужен манифест, сайт, полный пакет..."></textarea>
+
+                    <button type="submit">Начать поиск смыслов →</button>
+                    <p class="form-privacy">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Не спамим.</p>
+                </form>
+
+                <div class="success-msg" id="successMsg" style="grid-column: 2;">
+                    ✅ Заявка отправлена!<br>Свяжусь с вами в ближайшее время.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-brand">МСС·студия</div>
+        <p>Смыслы, манифест, сайт | Юлия, основатель | <a href="https://t.me/+79235703335">Telegram</a> | <a href="tel:+79235703335">+7 923 570-33-35</a></p>
+        <p style="margin-top:0.5rem;">© 2026 МСС. Все права защищены.</p>
+    </footer>
+
+    <div class="sticky-cta">
+        <a href="#contact">Начать поиск смыслов →</a>
+    </div>
+
+    <script>
+        function toggleFaq(btn) {
+            const item = btn.parentElement;
+            const answer = item.querySelector('.faq-a');
+            const isOpen = answer.classList.contains('open');
+            document.querySelectorAll('.faq-a.open').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-q.open').forEach(b => b.classList.remove('open'));
+            if (!isOpen) {
+                answer.classList.add('open');
+                btn.classList.add('open');
+            }
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            const form = document.getElementById('mainForm');
+            const data = new FormData(form);
+            const name = data.get('name');
+            const contact = data.get('contact');
+            const industry = data.get('industry') || 'не указана';
+            const message = data.get('message') || 'не указано';
+            const tgText = encodeURIComponent(
+                `Новая заявка с сайта МСС!\n\nИмя: ${name}\nКонтакт: ${contact}\nНиша: ${industry}\nЗадача: ${message}`
+                );
+            window.open(`https://t.me/share/url?url=https://mcc-studio.ru&text=${tgText}`, '_blank');
+            form.style.display = 'none';
+            const msg = document.getElementById('successMsg');
+            msg.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
