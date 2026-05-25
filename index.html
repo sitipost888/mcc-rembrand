@@ -23,7 +23,7 @@ h1,h2,h3,h4,h5,h6 { font-size: inherit; font-weight: inherit; }
   --background: oklch(98.5% .008 80);
   --foreground: oklch(22% .02 80);
   --card: oklch(98.5% .008 80);
-  --primary: #1b2e1f;
+  --primary: #1a231c;
   --primary-foreground: oklch(98% .01 80);
   --secondary: oklch(93% .015 80);
   --secondary-foreground: oklch(22% .02 80);
@@ -381,12 +381,13 @@ h1, h2, h3, h4 {
   margin-bottom: 2rem;
 }
 .philosophy-quote {
-  font-family: var(--font-sans);
-  font-size: 1.125rem;
-  line-height: 1.7;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
   margin-top: 1.5rem;
 }
-@media (min-width: 48rem) { .philosophy-quote { font-size: 1.25rem; } }
+@media (min-width: 48rem) { .philosophy-quote { font-size: 1.5rem; } }
 .philosophy-quote .accent {
   color: var(--accent);
   font-weight: 600;
@@ -413,17 +414,17 @@ h1, h2, h3, h4 {
 
 /* Founder photo */
 .founder-photo-wrap {
-  width: 7rem;
-  height: 7rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 9999px;
   overflow: hidden;
-  margin: 0 auto 1.5rem;
+  margin: 2.5rem auto 1.5rem;
   border: 2px solid color-mix(in oklab, var(--primary-foreground) 30%, transparent);
 }
 .founder-photo-wrap img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* Manifesto CTA */
@@ -1205,7 +1206,7 @@ footer {
     <p class="philosophy-quote reveal d360">Приезжайте такими, какие вы есть.</p>
 
     <div class="founder-photo-wrap reveal d400">
-      <img src="assets/founder.jpg" alt="Основатель Лесной Тиши" width="200" height="200" loading="lazy">
+      <img src="https://i.ibb.co/bMtvTNkg/IMG-5854.jpg" alt="Основатель Лесной Тиши" width="200" height="200" loading="lazy">
     </div>
     <p class="philosophy-author reveal d440">Алексей, основатель «Лесной Тиши»</p>
     
