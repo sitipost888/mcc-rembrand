@@ -7,7 +7,7 @@
 <meta name="description" content="Три уединённых дома с подогреваемыми бассейнами, камином и сауной. Тишина соснового леса в 35 км от города.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-<style> 
+<style>
 /* ── RESET & ROOT ── */
 *, *::before, *::after { box-sizing: border-box; border: 0 solid; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; line-height: 1.5; scroll-behavior: smooth; }
@@ -23,7 +23,7 @@ h1,h2,h3,h4,h5,h6 { font-size: inherit; font-weight: inherit; }
   --background: oklch(98.5% .008 80);
   --foreground: oklch(22% .02 80);
   --card: oklch(98.5% .008 80);
-  --primary: oklch(32% .04 145);
+  --primary: #1a231c;
   --primary-foreground: oklch(98% .01 80);
   --secondary: oklch(93% .015 80);
   --secondary-foreground: oklch(22% .02 80);
@@ -67,6 +67,10 @@ h1, h2, h3, h4 {
   0%, 100% { opacity: .45; }
   50%       { opacity: .9; }
 }
+@keyframes soundBar {
+  0%, 100% { height: 4px; }
+  50% { height: 12px; }
+}
 
 .fade-up { animation: .9s cubic-bezier(.2,.7,.2,1) both fadeUp; }
 .ken-burns { animation: 22s ease-in-out infinite drift; }
@@ -76,21 +80,54 @@ h1, h2, h3, h4 {
 .reveal {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 1.1s cubic-bezier(.2,.7,.2,1), transform 1.1s cubic-bezier(.2,.7,.2,1);
+  transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1);
   will-change: transform;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal.d80  { transition-delay: 80ms; }
-.reveal.d120 { transition-delay: 120ms; }
-.reveal.d160 { transition-delay: 160ms; }
-.reveal.d240 { transition-delay: 240ms; }
-.reveal.d280 { transition-delay: 280ms; }
-.reveal.d320 { transition-delay: 320ms; }
-.reveal.d400 { transition-delay: 400ms; }
-.reveal.d60  { transition-delay: 60ms; }
-.reveal.d100 { transition-delay: 100ms; }
-.reveal.d180 { transition-delay: 180ms; }
-.reveal.d300 { transition-delay: 300ms; }
+.reveal.d80  { transition-delay: 60ms; }
+.reveal.d120 { transition-delay: 80ms; }
+.reveal.d160 { transition-delay: 100ms; }
+.reveal.d240 { transition-delay: 120ms; }
+.reveal.d280 { transition-delay: 140ms; }
+.reveal.d320 { transition-delay: 160ms; }
+.reveal.d400 { transition-delay: 200ms; }
+.reveal.d60  { transition-delay: 40ms; }
+.reveal.d100 { transition-delay: 60ms; }
+.reveal.d180 { transition-delay: 100ms; }
+.reveal.d300 { transition-delay: 150ms; }
+
+/* ── SCROLL TO TOP BUTTON ── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background-color 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-top-btn:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  transform: translateY(-2px);
+}
 
 /* ── HERO ── */
 .hero-section {
@@ -99,53 +136,13 @@ h1, h2, h3, h4 {
   width: 100%;
   overflow: hidden;
 }
-
-/* Video reel */
-.hero-video-reel {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.hero-video-reel video {
+.hero-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  pointer-events: none;
 }
-.hero-video-reel video.active { opacity: 1; }
-
-/* Clip indicators */
-.hero-clips {
-  position: absolute;
-  bottom: 2.5rem;
-  right: 2rem;
-  z-index: 20;
-  display: flex;
-  gap: .5rem;
-  align-items: center;
-}
-.hero-clip-dot {
-  width: 2.5rem;
-  height: 2px;
-  background: rgba(255,255,255,.3);
-  border-radius: 2px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: background .3s;
-}
-.hero-clip-dot .fill {
-  height: 100%;
-  width: 0%;
-  background: #fff;
-  transition: width linear;
-}
-.hero-clip-dot.active { background: rgba(255,255,255,.15); }
-
 .hero-gradient-1 {
   position: absolute;
   inset: 0;
@@ -250,7 +247,7 @@ h1, h2, h3, h4 {
 @media (min-width: 64rem) { .hero-h1 { font-size: 6rem; } }
 
 .hero-sub {
-  max-width: 36rem;
+  max-width: 40rem;
   font-size: 1rem;
   font-weight: 300;
   line-height: 1.625;
@@ -384,19 +381,66 @@ h1, h2, h3, h4 {
   margin-bottom: 2rem;
 }
 .philosophy-quote {
-  font-family: var(--font-display);
-  font-size: 1.875rem;
-  line-height: 1.25;
-  margin-top: 2rem;
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-top: 1.5rem;
 }
-@media (min-width: 48rem) { .philosophy-quote { font-size: 3rem; line-height: 1.2; } }
-.philosophy-quote .accent { color: var(--accent); }
+@media (min-width: 48rem) { .philosophy-quote { font-size: 1.25rem; } }
+.philosophy-quote .accent {
+  color: var(--accent);
+  font-weight: 600;
+}
+  .philosophy-quote--lead {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 2rem;
+}
+@media (min-width: 48rem) {
+  .philosophy-quote--lead {
+    font-size: 3rem;
+  }
+}
 .philosophy-author {
-  margin-top: 2.5rem;
+  margin-top: 1rem;
   font-size: .875rem;
   font-weight: 300;
   letter-spacing: .05em;
   color: color-mix(in oklab, var(--primary-foreground) 70%, transparent);
+}
+
+/* Founder photo */
+.founder-photo-wrap {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+  border: 2px solid color-mix(in oklab, var(--primary-foreground) 30%, transparent);
+}
+.founder-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Manifesto CTA */
+.manifesto-cta {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: .75rem 1.75rem;
+  border-radius: 9999px;
+  border: 1px solid color-mix(in oklab, var(--primary-foreground) 40%, transparent);
+  color: var(--primary-foreground);
+  font-size: .875rem;
+  font-weight: 300;
+  transition: background-color .2s, border-color .2s;
+}
+.manifesto-cta:hover {
+  background-color: color-mix(in oklab, var(--primary-foreground) 10%, transparent);
+  border-color: color-mix(in oklab, var(--primary-foreground) 70%, transparent);
 }
 
 /* ── VALUES GRID ── */
@@ -425,7 +469,7 @@ h1, h2, h3, h4 {
   background-color: var(--border);
 }
 @media (min-width: 40rem) { .values-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@media (min-width: 64rem) { .values-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (min-width: 64rem) { .values-grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
 .value-card {
   background-color: var(--background);
   display: flex;
@@ -535,7 +579,8 @@ h1, h2, h3, h4 {
   gap: .75rem;
   margin-top: 2rem;
 }
-@media (min-width: 40rem) { .sound-btns { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+@media (min-width: 40rem) { .sound-btns { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (min-width: 64rem) { .sound-btns { grid-template-columns: repeat(3, minmax(0,1fr)); } }
 .sound-btn {
   display: flex;
   align-items: center;
@@ -546,7 +591,7 @@ h1, h2, h3, h4 {
   padding: 1rem;
   text-align: left;
   cursor: pointer;
-  transition: border-color .5s, background-color .5s;
+  transition: border-color .3s, background-color .3s;
 }
 .sound-btn:hover,
 .sound-btn.playing {
@@ -564,10 +609,35 @@ h1, h2, h3, h4 {
   border: 1px solid color-mix(in oklab, var(--cream) 30%, transparent);
   color: var(--cream);
   transition: border-color .3s;
+  position: relative;
 }
 .sound-btn:hover .play-circle,
 .sound-btn.playing .play-circle { border-color: var(--cream); }
 .sound-btn.playing .play-circle { border-color: var(--accent); background-color: color-mix(in oklab, var(--accent) 20%, transparent); }
+
+.sound-bars {
+  display: none;
+  gap: 3px;
+  align-items: flex-end;
+  justify-content: center;
+  height: 20px;
+}
+.sound-btn.playing .sound-bars {
+  display: flex;
+}
+.sound-btn.playing .play-icon,
+.sound-btn.playing .pause-icon {
+  display: none;
+}
+.sound-bar {
+  width: 3px;
+  background-color: var(--cream);
+  border-radius: 3px;
+  animation: soundBar 0.8s ease-in-out infinite;
+}
+.sound-bar:nth-child(2) { animation-delay: 0.15s; }
+.sound-bar:nth-child(3) { animation-delay: 0.3s; }
+
 .sound-name {
   font-family: var(--font-display);
   font-size: 1.125rem;
@@ -677,6 +747,7 @@ h1, h2, h3, h4 {
   margin-top: 1.5rem;
   width: fit-content;
   transition: border-color .15s, color .15s;
+  cursor: pointer;
 }
 .cabin-cta:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -963,11 +1034,19 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem;
   font-size: .75rem;
   color: var(--muted-foreground);
+  text-align: center;
 }
-@media (min-width: 40rem) { .footer-inner { flex-direction: row; } }
+@media (min-width: 40rem) { .footer-inner { flex-direction: row; text-align: left; } }
+.footer-credit a {
+  color: var(--muted-foreground);
+  transition: color .15s;
+}
+.footer-credit a:hover {
+  color: var(--accent);
+}
 
 /* ── MOBILE MENU ── */
 .mobile-menu-btn {
@@ -975,20 +1054,31 @@ footer {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
-  background: none;
-  border: none;
+  padding: 8px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid color-mix(in oklab, var(--cream) 40%, transparent);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: background-color .2s;
+}
+.mobile-menu-btn:hover {
+  background: rgba(0,0,0,0.5);
 }
 @media (min-width: 48rem) { .mobile-menu-btn { display: none; } }
 .mobile-menu-btn span {
   display: block;
-  width: 22px;
+  width: 18px;
   height: 1.5px;
-  background: color-mix(in oklab, var(--cream) 80%, transparent);
+  background: var(--cream);
   transition: all .3s;
+  transform-origin: center;
 }
 .mobile-nav {
-  display: none;
+  display: flex;
   position: fixed;
   inset: 0;
   background: var(--background);
@@ -997,8 +1087,14 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
 }
-.mobile-nav.open { display: flex; }
+.mobile-nav.open {
+  opacity: 1;
+  visibility: visible;
+}
 .mobile-nav a {
   font-family: var(--font-display);
   font-size: 2rem;
@@ -1025,31 +1121,16 @@ footer {
   <a href="#atmosphere" onclick="closeMobileNav()">Атмосфера</a>
   <a href="#reviews" onclick="closeMobileNav()">Отзывы</a>
   <a href="#contact" onclick="closeMobileNav()">Контакты</a>
-  <a href="tel:+79991234567" style="font-family:var(--font-sans);font-size:1.125rem;color:var(--accent)">+7 999 123-45-67</a>
+  <a href="tel:+79235703335" style="font-family:var(--font-sans);font-size:1.125rem;color:var(--accent)">+7 923 570-33-35</a>
 </div>
 
 <main>
 
-  <!-- Video reel via iframes (работает без CORS) -->
-  <div class="hero-video-reel" id="heroReel">
-    <iframe id="v0" src="https://player.vimeo.com/video/1067344072?h=bd7dd3f38c&background=1&muted=1&autopause=0&loop=0" frameborder="0" allow="autoplay; fullscreen" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s;"></iframe>
-    <iframe id="v1" src="https://player.vimeo.com/video/1067344090?h=bd7dd3f38c&background=1&muted=1&autopause=0&loop=0" frameborder="0" allow="autoplay; fullscreen" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s;"></iframe>
-    <iframe id="v2" src="https://player.vimeo.com/video/1067344105?h=bd7dd3f38c&background=1&muted=1&autopause=0&loop=0" frameborder="0" allow="autoplay; fullscreen" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s;"></iframe>
-    <iframe id="v3" src="https://player.vimeo.com/video/1067344123?h=bd7dd3f38c&background=1&muted=1&autopause=0&loop=0" frameborder="0" allow="autoplay; fullscreen" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s;"></iframe>
-    <iframe id="v4" src="https://player.vimeo.com/video/1067344141?h=bd7dd3f38c&background=1&muted=1&autopause=0&loop=0" frameborder="0" allow="autoplay; fullscreen" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity 1.2s;"></iframe>
-  </div>
-
+<!-- ══ HERO ══ -->
+<section class="hero-section">
+  <img src="assets/hero.jpg" alt="Современный дом А-образной формы в лесу с бассейном на закате" class="hero-img ken-burns">
   <div class="hero-gradient-1"></div>
   <div class="hero-gradient-2"></div>
-
-  <!-- Progress dots -->
-  <div class="hero-clips" id="heroClips" aria-hidden="true">
-    <div class="hero-clip-dot active" data-idx="0"><div class="fill"></div></div>
-    <div class="hero-clip-dot" data-idx="1"><div class="fill"></div></div>
-    <div class="hero-clip-dot" data-idx="2"><div class="fill"></div></div>
-    <div class="hero-clip-dot" data-idx="3"><div class="fill"></div></div>
-    <div class="hero-clip-dot" data-idx="4"><div class="fill"></div></div>
-  </div>
 
   <header class="hero-header">
     <div class="hero-header-inner">
@@ -1064,7 +1145,7 @@ footer {
         <a href="#reviews">Отзывы</a>
         <a href="#contact">Контакты</a>
       </nav>
-      <a href="tel:+79991234567" class="hero-phone">+7 999 123-45-67</a>
+      <a href="tel:+79235703335" class="hero-phone">+7 923 570-33-35</a>
       <button class="mobile-menu-btn" id="burger" aria-label="Меню">
         <span></span><span></span><span></span>
       </button>
@@ -1073,10 +1154,10 @@ footer {
 
   <div class="hero-content">
     <p class="hero-eyebrow fade-up">Республика Адыгея · 35 км от Краснодара</p>
-    <h1 class="hero-h1 fade-up">Где утро пахнет хвоей,<br>а вечер — дымом костра</h1>
-    <p class="hero-sub fade-up">Камерная база из трёх домов в сосновом лесу. Подогреваемые бассейны, камин, сауна и тишина, которую вы давно забыли, как звучит.</p>
+    <h1 class="hero-h1 fade-up">Утро здесь пахнет хвоей.<br>Вечер — дымом костра.</h1>
+    <p class="hero-sub fade-up">Тишина, от которой вы отвыкли. Здесь она настоящая. Три дома в сосновом лесу. Бассейн, сауна, камин. Приезжайте за ней.</p>
     <div class="hero-ctas fade-up">
-      <a href="#cabins" class="btn-accent">Посмотреть дома</a>
+      <a href="#cabins" class="btn-accent" id="scrollToCabins">Посмотреть дома</a>
       <a href="#atmosphere" class="btn-outline-cream">Услышать атмосферу</a>
     </div>
     <div class="hero-scroll-hint fade-up">
@@ -1091,12 +1172,13 @@ footer {
   <div class="section-intro-inner">
     <div class="section-intro-left">
       <p class="eyebrow reveal">Первое впечатление</p>
-      <h2 class="section-title reveal">Город заканчивается<br>за 35 километров</h2>
+      <h2 class="section-title reveal">Машина останавливается<br>на грунтовой дороге</h2>
     </div>
     <div class="section-intro-right intro-text">
-      <p class="reveal">Сначала исчезает асфальт. Потом — сигнал в радиоприёмнике. Потом — шум, который вы уже не замечали, потому что он был фоном всей вашей жизни.</p>
-      <p class="reveal d120">Вы выходите из машины и слышите, как падает шишка. Это первое, что говорит вам лес: «Тут другое время».</p>
-      <p class="reveal d240">В доме уже тепло. На столе — записка от хозяев и графин с морсом. В камине лежат дрова. Никакого ресепшна, никаких форм. Только вы и место, которое ждало именно вас.</p>
+      <p class="reveal">Вы выходите — и первое, что замечаете, это запах: смола, влажная хвоя, дым далёкого костра.</p>
+      <p class="reveal d120">Гравий хрустит под ногами. Тропинка ведёт к домику, в окнах которого уже зажгли лампы — будто кто-то ждал именно вас. На крыльце — тёплый плед, в чайнике — горячий травяной чай.</p>
+      <p class="reveal d240">В доме уже тепло. На столе — записка от хозяев и чайник с заваренным травяным чаем. В камине — дрова. Никакого ресепшна, никаких бланков. Только вы и место, которое ждало именно вас.</p>
+      <p class="reveal d280">Телефон вы достанете завтра. Может быть, послезавтра.</p>
     </div>
   </div>
 </section>
@@ -1106,9 +1188,28 @@ footer {
   <img src="assets/atmo-mist.jpg" alt="Туман в сосновом лесу на рассвете" class="philosophy-bg ken-burns" loading="lazy">
   <div class="philosophy-overlay"></div>
   <div class="philosophy-inner">
-    <p class="philosophy-eyebrow reveal">Манифест</p>
-    <p class="philosophy-quote reveal d120">«Двадцать лет в городе научили меня одному: <span class="accent">настоящий отдых начинается там, где заканчивается всё лишнее.</span><br>Поэтому здесь — три дома, один лес, одна тишина. И ничего, что хотелось бы убрать.»</p>
-    <p class="philosophy-author reveal d280">— Алексей, основатель «Лесной Тиши»</p>
+    <p class="philosophy-eyebrow reveal">Манифест основателя</p>
+    
+    <p class="philosophy-quote philosophy-quote--lead reveal d120">Я построил место, которого мне так не хватало.</p>
+    
+    <p class="philosophy-quote reveal d160">Годами я просыпался по будильнику и засыпал с телефоном в руке. Однажды я уехал в лес на три дня — без сети, без планов, с одним термосом и старым свитером.</p>
+    
+    <p class="philosophy-quote reveal d200">На третий день я услышал как поют птицы в лесу, как шуршит под ногами трава, как трещит огонь в костре. Просто услышал. На эти звуки я не обращал внимания с детства.</p>
+    
+    <p class="philosophy-quote reveal d240">Тогда я понял: людям не нужен ещё один отель. Им нужно место, где можно наконец успокоиться, замолчать — и услышать себя, а не шум.</p>
+    
+    <p class="philosophy-quote reveal d280">Жизнь в городе научила меня одному: <span class="accent">настоящий отдых начинается там, где заканчивается всё лишнее.</span> Поэтому здесь — три дома, один лес, одна тишина. И ничего, что хотелось бы убрать.</p>
+    
+    <p class="philosophy-quote reveal d320">Тишина — это не про роскошь. Это про возвращение. К запаху костра. К долгому взгляду в одну точку. К человеку рядом, с которым вы давно не проводили время по-настоящему.</p>
+    
+    <p class="philosophy-quote reveal d360">Приезжайте такими, какие вы есть.</p>
+
+    <div class="founder-photo-wrap reveal d400">
+      <img src="assets/founder.jpg" alt="Основатель Лесной Тиши" width="200" height="200" loading="lazy">
+    </div>
+    <p class="philosophy-author reveal d440">Алексей, основатель «Лесной Тиши»</p>
+    
+    <a href="manifesto.html" class="manifesto-cta reveal d480">Читать подробнее манифест</a>
   </div>
 </section>
 
@@ -1118,7 +1219,7 @@ footer {
     <div class="values-header">
       <div class="values-header-left">
         <p class="eyebrow reveal">Ценности</p>
-        <h2 class="section-title reveal">Шесть вещей, ради которых сюда едут</h2>
+        <h2 class="section-title reveal">Восемь вещей, ради которых сюда едут</h2>
       </div>
       <div class="values-header-right">
         <p class="reveal d100">Мы не пытаемся быть всем сразу. Мы делаем одно — даём место для тишины — и делаем это так, как умеем.</p>
@@ -1127,33 +1228,43 @@ footer {
     <div class="values-grid">
       <div class="value-card reveal">
         <span class="value-num">01</span>
-        <h3 class="value-title">Тишина, это слышно</h3>
-        <p class="value-desc">Никакого ресепшна, музыки в общих зонах, соседей за стеной. Только лес и вы.</p>
+        <h3 class="value-title">Тишина, которую слышно</h3>
+        <p class="value-desc">Никакого ресепшна, фоновой музыки, соседей за стеной. Только лес, ветер и ваше дыхание.</p>
       </div>
       <div class="value-card reveal d80">
         <span class="value-num">02</span>
         <h3 class="value-title">Личная территория</h3>
-        <p class="value-desc">Каждый дом — на своём участке с глухим забором, террасой, бассейном и мангалом.</p>
+        <p class="value-desc">Каждый дом стоит на своём участке: глухой забор, терраса, бассейн, ванна, мангал. Вы — хозяин своего пространства.</p>
+      </div>
+      <div class="value-card reveal d120">
+        <span class="value-num">03</span>
+        <h3 class="value-title">Тёплая и чистая вода в бассейне</h3>
+        <p class="value-desc">Бассейны подогреваются до 32 °C и держат эту температуру за счёт умного нагрева. Вода меняется перед каждым гостем — это наш регламент.</p>
       </div>
       <div class="value-card reveal d160">
-        <span class="value-num">03</span>
-        <h3 class="value-title">Тёплая вода круглый год</h3>
-        <p class="value-desc">Бассейны подогреваются до 32 °C — купание в декабре под падающим снегом.</p>
+        <span class="value-num">04</span>
+        <h3 class="value-title">Ванна под открытым небом</h3>
+        <p class="value-desc">Представьте: вы в ванной, в воде еловые ветки, которые дают насыщенный хвойный аромат. Горячая расслабляющая вода, пар поднимается в небо. Никакой спешки — только вы и этот момент.</p>
+      </div>
+      <div class="value-card reveal d200">
+        <span class="value-num">05</span>
+        <h3 class="value-title">Никаких лишних правил</h3>
+        <p class="value-desc">Заезд в удобное время, поздний выезд — по запросу. Питомцы — желанные гости. Никаких «нельзя» без причины.</p>
       </div>
       <div class="value-card reveal d240">
-        <span class="value-num">04</span>
-        <h3 class="value-title">Никаких лишних правил</h3>
-        <p class="value-desc">Заезд в удобное время, поздний выезд по запросу, питомцы — желанные гости.</p>
+        <span class="value-num">06</span>
+        <h3 class="value-title">Только три дома</h3>
+        <p class="value-desc">Мы не строим четвёртый. Камерность — не маркетинг, а принцип.</p>
+      </div>
+      <div class="value-card reveal d280">
+        <span class="value-num">07</span>
+        <h3 class="value-title">Локальное и настоящее</h3>
+        <p class="value-desc">Завтрак от фермеров. Дрова — из своего леса. Постельное бельё — плотное, хрустящее, как в детстве. И камин, который греет не только тело.</p>
       </div>
       <div class="value-card reveal d320">
-        <span class="value-num">05</span>
-        <h3 class="value-title">Только три дома</h3>
-        <p class="value-desc">Мы не строим четвёртый. Камерность — не маркетинг, это принцип.</p>
-      </div>
-      <div class="value-card reveal d400">
-        <span class="value-num">06</span>
-        <h3 class="value-title">Локальное и настоящее</h3>
-        <p class="value-desc">Завтрак от фермеров, дрова из своего леса, простыни из плотного белья.</p>
+        <span class="value-num">08</span>
+        <h3 class="value-title">Медленное время</h3>
+        <p class="value-desc">Завтрак становится ритуалом. Вечер — событием. Вы сами знаете, что вам нужно — мы просто не мешаем.</p>
       </div>
     </div>
   </div>
@@ -1167,7 +1278,7 @@ footer {
     <div class="reveal">
       <p class="atmo-eyebrow">Атмосфера</p>
       <h2 class="atmo-title">Закройте глаза.<br>Послушайте, как звучит место.</h2>
-      <p class="atmo-sub">Прежде чем приехать, услышьте утренний ветер в кронах, треск дров в камине или капли дождя на крыше. Это не запись из стока — это то, что вы слышите здесь.</p>
+      <p class="atmo-sub">Прежде чем приехать, услышьте утренний ветер в кронах, треск дров в камине или капли дождя на крыше.</p>
     </div>
     <div class="reveal d120">
       <div class="atmo-player">
@@ -1176,37 +1287,49 @@ footer {
           <span>Атмосфера · звук</span>
         </div>
         <h3 class="atmo-player-title">Послушайте лес, прежде чем приехать</h3>
-        <p class="atmo-player-desc">Три сцены, записанные на территории. Включите любую — закройте глаза на минуту.</p>
+        <p class="atmo-player-desc">Шесть сцен с территории. Включите любую — закройте глаза на минуту.</p>
         <div class="sound-btns">
           <button type="button" class="sound-btn" data-sound="forest" aria-pressed="false">
             <span class="play-circle">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon" aria-hidden="true" style="transform:translateX(1px)"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pause-icon" aria-hidden="true" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span class="sound-bars"><span class="sound-bar"></span><span class="sound-bar"></span><span class="sound-bar"></span></span>
             </span>
-            <span>
-              <span class="sound-name">Утро в лесу</span>
-              <span class="sound-sub">ветер, шелест хвои, птицы</span>
+            <span><span class="sound-name">Утро в лесу</span><span class="sound-sub">ветер, шелест хвои, птицы</span></span>
+          </button>
+          <button type="button" class="sound-btn" data-sound="birds" aria-pressed="false">
+            <span class="play-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon" aria-hidden="true" style="transform:translateX(1px)"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+              <span class="sound-bars"><span class="sound-bar"></span><span class="sound-bar"></span><span class="sound-bar"></span></span>
             </span>
+            <span><span class="sound-name">Пение птиц</span><span class="sound-sub">лесной хор, утренняя трель</span></span>
+          </button>
+          <button type="button" class="sound-btn" data-sound="wind" aria-pressed="false">
+            <span class="play-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon" aria-hidden="true" style="transform:translateX(1px)"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+              <span class="sound-bars"><span class="sound-bar"></span><span class="sound-bar"></span><span class="sound-bar"></span></span>
+            </span>
+            <span><span class="sound-name">Ветер в кронах</span><span class="sound-sub">низкий гул, порывы</span></span>
           </button>
           <button type="button" class="sound-btn" data-sound="fire" aria-pressed="false">
             <span class="play-circle">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon" aria-hidden="true" style="transform:translateX(1px)"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pause-icon" aria-hidden="true" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span class="sound-bars"><span class="sound-bar"></span><span class="sound-bar"></span><span class="sound-bar"></span></span>
             </span>
-            <span>
-              <span class="sound-name">Камин</span>
-              <span class="sound-sub">треск дров, мягкий жар</span>
-            </span>
+            <span><span class="sound-name">Камин</span><span class="sound-sub">треск дров, мягкий жар</span></span>
           </button>
           <button type="button" class="sound-btn" data-sound="rain" aria-pressed="false">
             <span class="play-circle">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon" aria-hidden="true" style="transform:translateX(1px)"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pause-icon" aria-hidden="true" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <span class="sound-bars"><span class="sound-bar"></span><span class="sound-bar"></span><span class="sound-bar"></span></span>
             </span>
-            <span>
-              <span class="sound-name">Дождь на крыше</span>
-              <span class="sound-sub">капли, далёкий гром</span>
+            <span><span class="sound-name">Дождь на крыше</span><span class="sound-sub">капли, далёкий гром</span></span>
+          </button>
+          <button type="button" class="sound-btn" data-sound="grass" aria-pressed="false">
+            <span class="play-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="play-icon" aria-hidden="true" style="transform:translateX(1px)"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>
+              <span class="sound-bars"><span class="sound-bar"></span><span class="sound-bar"></span><span class="sound-bar"></span></span>
             </span>
+            <span><span class="sound-name">Шелест травы</span><span class="sound-sub">шаги по сухой траве</span></span>
           </button>
         </div>
       </div>
@@ -1226,7 +1349,6 @@ footer {
     </div>
     <div class="cabins-grid">
 
-      <!-- Сосна -->
       <div class="reveal">
         <article class="cabin-article">
           <div class="cabin-img-wrap">
@@ -1239,16 +1361,11 @@ footer {
           </div>
           <p class="cabin-tagline">Дом для тех, кто любит просыпаться с видом на верхушки сосен</p>
           <p class="cabin-desc">Двухэтажный А-образный каркас с панорамным окном во всю стену, камином, кухней и террасой с бассейном 32 °C. Внутри — лён, дерево, тёплый свет и тишина, которую слышно.</p>
-          <div class="cabin-specs">
-            <span>80 м²</span>
-            <span class="cabin-spec-dot"></span>
-            <span>4 + 2 чел.</span>
-          </div>
-          <a href="#contact" class="cabin-cta">Забронировать <span aria-hidden="true">→</span></a>
+          <div class="cabin-specs"><span>80 м²</span><span class="cabin-spec-dot"></span><span>4 + 2 чел.</span></div>
+          <a href="#contact" class="cabin-cta scroll-to-contact">Забронировать <span aria-hidden="true">→</span></a>
         </article>
       </div>
 
-      <!-- Туман -->
       <div class="reveal d120">
         <article class="cabin-article">
           <div class="cabin-img-wrap">
@@ -1261,16 +1378,11 @@ footer {
           </div>
           <p class="cabin-tagline">Камерный дом для двоих — без лишнего, ничего лишнего</p>
           <p class="cabin-desc">Один уровень, открытый бассейн под небом, зона у костра и кровать у окна. Идеально, когда хочется уехать вдвоём и забыть про телефон.</p>
-          <div class="cabin-specs">
-            <span>65 м²</span>
-            <span class="cabin-spec-dot"></span>
-            <span>2 + 2 чел.</span>
-          </div>
-          <a href="#contact" class="cabin-cta">Забронировать <span aria-hidden="true">→</span></a>
+          <div class="cabin-specs"><span>65 м²</span><span class="cabin-spec-dot"></span><span>2 + 2 чел.</span></div>
+          <a href="#contact" class="cabin-cta scroll-to-contact">Забронировать <span aria-hidden="true">→</span></a>
         </article>
       </div>
 
-      <!-- Хвоя -->
       <div class="reveal d240">
         <article class="cabin-article">
           <div class="cabin-img-wrap">
@@ -1283,12 +1395,8 @@ footer {
           </div>
           <p class="cabin-tagline">Большой дом для своих — встречать рассвет всей семьёй</p>
           <p class="cabin-desc">Две спальни, дровяной камин, обеденный стол на восьмерых, дровяная сауна и терраса с видом на горы. Место, куда возвращаются через год.</p>
-          <div class="cabin-specs">
-            <span>120 м²</span>
-            <span class="cabin-spec-dot"></span>
-            <span>6 + 2 чел.</span>
-          </div>
-          <a href="#contact" class="cabin-cta">Забронировать <span aria-hidden="true">→</span></a>
+          <div class="cabin-specs"><span>120 м²</span><span class="cabin-spec-dot"></span><span>6 + 2 чел.</span></div>
+          <a href="#contact" class="cabin-cta scroll-to-contact">Забронировать <span aria-hidden="true">→</span></a>
         </article>
       </div>
 
@@ -1304,51 +1412,11 @@ footer {
       <h2 class="section-title">Как проходит время,<br>когда никуда не нужно спешить</h2>
     </div>
     <ol class="day-list">
-      <li class="reveal">
-        <div class="day-item">
-          <div class="day-time-col"><p class="day-time">16:00</p></div>
-          <div class="day-body-col">
-            <h3 class="day-title">Приезд</h3>
-            <p class="day-desc">Дом уже открыт. На столе — записка от хозяев и графин с морсом.</p>
-          </div>
-        </div>
-      </li>
-      <li class="reveal d60">
-        <div class="day-item">
-          <div class="day-time-col"><p class="day-time">17:30</p></div>
-          <div class="day-body-col">
-            <h3 class="day-title">Первый круг по территории</h3>
-            <p class="day-desc">Тропа вокруг участка, запах хвои, шишки под ногами. Телефон остаётся в доме.</p>
-          </div>
-        </div>
-      </li>
-      <li class="reveal d120">
-        <div class="day-item">
-          <div class="day-time-col"><p class="day-time">20:00</p></div>
-          <div class="day-body-col">
-            <h3 class="day-title">Ужин у огня</h3>
-            <p class="day-desc">Угли в мангале готовы. Дрова потрескивают. Небо над соснами становится сиреневым.</p>
-          </div>
-        </div>
-      </li>
-      <li class="reveal d180">
-        <div class="day-item">
-          <div class="day-time-col"><p class="day-time">23:00</p></div>
-          <div class="day-body-col">
-            <h3 class="day-title">Бассейн под звёздами</h3>
-            <p class="day-desc">Вода 32 °C, пар уходит вверх, наверху — настоящая, не городская, темнота.</p>
-          </div>
-        </div>
-      </li>
-      <li class="reveal d240">
-        <div class="day-item">
-          <div class="day-time-col"><p class="day-time">08:00</p></div>
-          <div class="day-body-col">
-            <h3 class="day-title">Утро в тумане</h3>
-            <p class="day-desc">Кофе на террасе. Лес медленно проявляется из молока. Никуда не нужно спешить.</p>
-          </div>
-        </div>
-      </li>
+      <li class="reveal"><div class="day-item"><div class="day-time-col"><p class="day-time">16:00</p></div><div class="day-body-col"><h3 class="day-title">Приезд</h3><p class="day-desc">Дом уже открыт. На столе — записка от хозяев и чайник с травяным чаем.</p></div></div></li>
+      <li class="reveal d60"><div class="day-item"><div class="day-time-col"><p class="day-time">17:30</p></div><div class="day-body-col"><h3 class="day-title">Первый круг по территории</h3><p class="day-desc">Тропа вокруг участка, запах хвои, шишки под ногами. Телефон остаётся в доме.</p></div></div></li>
+      <li class="reveal d120"><div class="day-item"><div class="day-time-col"><p class="day-time">20:00</p></div><div class="day-body-col"><h3 class="day-title">Ужин у огня</h3><p class="day-desc">Угли в мангале готовы. Дрова потрескивают. Небо над соснами становится сиреневым.</p></div></div></li>
+      <li class="reveal d180"><div class="day-item"><div class="day-time-col"><p class="day-time">23:00</p></div><div class="day-body-col"><h3 class="day-title">Бассейн под звёздами</h3><p class="day-desc">Вода 32 °C, пар уходит вверх, наверху — настоящая, не городская, темнота.</p></div></div></li>
+      <li class="reveal d240"><div class="day-item"><div class="day-time-col"><p class="day-time">08:00</p></div><div class="day-body-col"><h3 class="day-title">Утро в тумане</h3><p class="day-desc">Кофе на террасе. Лес медленно проявляется из молока. Никуда не нужно спешить.</p></div></div></li>
     </ol>
   </div>
 </section>
@@ -1357,30 +1425,15 @@ footer {
 <section class="section-gallery">
   <div class="gallery-inner">
     <div class="gallery-header">
-      <div class="gallery-header-left reveal">
-        <p class="gallery-eyebrow">Галерея</p>
-        <h2 class="gallery-title">Это не рендеры. Так выглядит каждый вечер.</h2>
-      </div>
-      <div class="gallery-header-right reveal d100">
-        <p>Фотографы приезжают к нам два раза в год — весной и в первый снег. Всё остальное снимают сами гости.</p>
-      </div>
+      <div class="gallery-header-left reveal"><p class="gallery-eyebrow">Галерея</p><h2 class="gallery-title">Это не рендеры. Так выглядит каждый вечер.</h2></div>
+      <div class="gallery-header-right reveal d100"><p>Фотографы приезжают к нам два раза в год — весной и в первый снег. Всё остальное снимают сами гости.</p></div>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item large reveal">
-        <img src="assets/atmo-pool.jpg" alt="Бассейн ночью у дома" loading="lazy">
-      </div>
-      <div class="gallery-item reveal d80">
-        <img src="assets/atmo-coffee.jpg" alt="Кофе у окна с видом на лес" loading="lazy">
-      </div>
-      <div class="gallery-item reveal d160">
-        <img src="assets/atmo-sauna.jpg" alt="Финская сауна с видом на лес" loading="lazy">
-      </div>
-      <div class="gallery-item reveal d240" style="grid-column:span 2">
-        <img src="assets/atmo-campfire.jpg" alt="Костёр вечером" loading="lazy">
-      </div>
-      <div class="gallery-item reveal d320">
-        <img src="assets/atmo-mist.jpg" alt="Туман в утреннем лесу" loading="lazy">
-      </div>
+      <div class="gallery-item large reveal"><img src="assets/atmo-pool.jpg" alt="Бассейн ночью у дома" loading="lazy"></div>
+      <div class="gallery-item reveal d80"><img src="assets/atmo-coffee.jpg" alt="Кофе у окна с видом на лес" loading="lazy"></div>
+      <div class="gallery-item reveal d160"><img src="assets/atmo-sauna.jpg" alt="Финская сауна с видом на лес" loading="lazy"></div>
+      <div class="gallery-item reveal d240" style="grid-column:span 2"><img src="assets/atmo-campfire.jpg" alt="Костёр вечером" loading="lazy"></div>
+      <div class="gallery-item reveal d320"><img src="assets/atmo-mist.jpg" alt="Туман в утреннем лесу" loading="lazy"></div>
     </div>
   </div>
 </section>
@@ -1392,35 +1445,15 @@ footer {
       <p class="eyebrow" style="font-size:.75rem;text-transform:uppercase;letter-spacing:.3em;color:var(--muted-foreground)">Инфраструктура</p>
       <h2 class="section-title">Всё уже подготовлено</h2>
       <p class="amenities-sub">Вам ничего не нужно везти с собой — кроме желания замолчать на пару дней.</p>
-      <div class="amenities-img-wrap">
-        <img src="assets/amenity-bbq.jpg" alt="Мангальная зона с очагом и гирляндами" width="1200" height="900" loading="lazy">
-      </div>
+      <div class="amenities-img-wrap"><img src="assets/amenity-bbq.jpg" alt="Мангальная зона с очагом и гирляндами" width="1200" height="900" loading="lazy"></div>
     </div>
     <ul class="amenities-grid amenities-right">
-      <li class="amenity-card reveal">
-        <h3 class="amenity-title">Подогреваемые бассейны</h3>
-        <p class="amenity-desc">Купание круглый год — вода 32 °C даже зимой, под звёздным небом.</p>
-      </li>
-      <li class="amenity-card reveal d60">
-        <h3 class="amenity-title">Мангальная зона</h3>
-        <p class="amenity-desc">Барбекю, дровяные печи и небольшие очаги у костра на каждом участке.</p>
-      </li>
-      <li class="amenity-card reveal d120">
-        <h3 class="amenity-title">Финская сауна</h3>
-        <p class="amenity-desc">Дровяная парная с кедровыми лавками, купелью и выходом на отдых.</p>
-      </li>
-      <li class="amenity-card reveal d180">
-        <h3 class="amenity-title">Завтрак на террасе</h3>
-        <p class="amenity-desc">Фермерские продукты доставляют к указанному часу — без меню, по сезону.</p>
-      </li>
-      <li class="amenity-card reveal d240">
-        <h3 class="amenity-title">Дровяной камин</h3>
-        <p class="amenity-desc">Дрова уже лежат у входа. Огонь разгорается с первой спички.</p>
-      </li>
-      <li class="amenity-card reveal d300">
-        <h3 class="amenity-title">Питомцы приветствуются</h3>
-        <p class="amenity-desc">Принимаем гостей с собаками — без доплаты за уборку, миска ждёт.</p>
-      </li>
+      <li class="amenity-card reveal"><h3 class="amenity-title">Подогреваемые бассейны</h3><p class="amenity-desc">Купание круглый год — вода 32 °C даже зимой, под звёздным небом.</p></li>
+      <li class="amenity-card reveal d60"><h3 class="amenity-title">Мангальная зона</h3><p class="amenity-desc">Барбекю, дровяные печи и небольшие очаги у костра на каждом участке.</p></li>
+      <li class="amenity-card reveal d120"><h3 class="amenity-title">Финская сауна</h3><p class="amenity-desc">Дровяная парная с кедровыми лавками, купелью и выходом на отдых.</p></li>
+      <li class="amenity-card reveal d180"><h3 class="amenity-title">Завтрак на террасе</h3><p class="amenity-desc">Фермерские продукты доставляют к указанному часу — без меню, по сезону.</p></li>
+      <li class="amenity-card reveal d240"><h3 class="amenity-title">Дровяной камин</h3><p class="amenity-desc">Дрова уже лежат у входа. Огонь разгорается с первой спички.</p></li>
+      <li class="amenity-card reveal d300"><h3 class="amenity-title">Питомцы приветствуются</h3><p class="amenity-desc">Принимаем гостей с собаками — без доплаты за уборку, миска ждёт.</p></li>
     </ul>
   </div>
 </section>
@@ -1428,38 +1461,11 @@ footer {
 <!-- ══ REVIEWS ══ -->
 <section class="section-reviews" id="reviews">
   <div class="reviews-inner">
-    <div class="reviews-header reveal">
-      <p class="reviews-eyebrow">Отзывы</p>
-      <h2 class="reviews-title">Что говорят гости после первой ночи в лесу</h2>
-    </div>
+    <div class="reviews-header reveal"><p class="reviews-eyebrow">Отзывы</p><h2 class="reviews-title">Что говорят гости после первой ночи в лесу</h2></div>
     <div class="reviews-grid">
-      <div class="reveal">
-        <figure class="review-figure">
-          <blockquote class="review-blockquote">« Уехали на двое суток — кажется, перезагрузились на месяц. Дом тёплый, бассейн работает идеально, тишина невероятная. »</blockquote>
-          <figcaption>
-            <span class="review-name">Анна и Михаил</span>
-            <span class="review-date">октябрь 2025</span>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="reveal d120">
-        <figure class="review-figure">
-          <blockquote class="review-blockquote">« Брали «Хвою» на шестерых. Дети не вылезали из бассейна, взрослые — с террасы. Вернёмся обязательно. »</blockquote>
-          <figcaption>
-            <span class="review-name">Семья Котовых</span>
-            <span class="review-date">август 2025</span>
-          </figcaption>
-        </figure>
-      </div>
-      <div class="reveal d240">
-        <figure class="review-figure">
-          <blockquote class="review-blockquote">« Лучшее место рядом с городом, где правда чувствуешь лес. Завтраки — отдельная любовь. »</blockquote>
-          <figcaption>
-            <span class="review-name">Дарья</span>
-            <span class="review-date">июль 2025</span>
-          </figcaption>
-        </figure>
-      </div>
+      <div class="reveal"><figure class="review-figure"><blockquote class="review-blockquote">« Уехали на двое суток — кажется, перезагрузились на месяц. Дом тёплый, бассейн работает идеально, тишина невероятная. »</blockquote><figcaption><span class="review-name">Анна и Михаил</span><span class="review-date">октябрь 2025</span></figcaption></figure></div>
+      <div class="reveal d120"><figure class="review-figure"><blockquote class="review-blockquote">« Брали «Хвою» на шестерых. Дети не вылезали из бассейна, взрослые — с террасы. Вернёмся обязательно. »</blockquote><figcaption><span class="review-name">Семья Котовых</span><span class="review-date">август 2025</span></figcaption></figure></div>
+      <div class="reveal d240"><figure class="review-figure"><blockquote class="review-blockquote">« Лучшее место рядом с городом, где правда чувствуешь лес. Завтраки — отдельная любовь. »</blockquote><figcaption><span class="review-name">Дарья</span><span class="review-date">июль 2025</span></figcaption></figure></div>
     </div>
   </div>
 </section>
@@ -1469,26 +1475,12 @@ footer {
   <img src="assets/atmo-campfire.jpg" alt="" aria-hidden="true" class="contact-bg ken-burns" loading="lazy">
   <div class="contact-overlay"></div>
   <div class="contact-inner">
-    <div class="reveal">
-      <p class="contact-eyebrow">Контакты</p>
-      <h2 class="contact-title">Готовы встретить вас в любой день</h2>
-      <p class="contact-sub">Напишите или позвоните — расскажем о свободных датах, поможем выбрать дом и забронировать. Без формальностей и автоответчиков.</p>
-    </div>
+    <div class="reveal"><p class="contact-eyebrow">Контакты</p><h2 class="contact-title">Готовы встретить вас в любой день</h2><p class="contact-sub">Напишите или позвоните — расскажем о свободных датах, поможем выбрать дом и забронировать. Без формальностей и автоответчиков.</p></div>
     <div class="reveal d120">
       <dl class="contact-dl">
-        <div>
-          <dt class="contact-dt">Телефон</dt>
-          <dd class="contact-dd"><a href="tel:+79991234567">+7 999 123-45-67</a></dd>
-          <dd class="contact-dd-sub">Ежедневно с 9:00 до 21:00</dd>
-        </div>
-        <div>
-          <dt class="contact-dt">Адрес</dt>
-          <dd class="contact-dd-body">Республика Адыгея, Тахтамукайский р-н,<br>п. Супс, ул. Лесная, 12</dd>
-        </div>
-        <div>
-          <dt class="contact-dt">Почта</dt>
-          <dd class="contact-dd"><a href="mailto:hello@lesnaya-tish.ru" style="font-size:1.5rem">hello@lesnaya-tish.ru</a></dd>
-        </div>
+        <div><dt class="contact-dt">Телефон</dt><dd class="contact-dd"><a href="tel:+79235703335">+7 923 570-33-35</a></dd><dd class="contact-dd-sub">Ежедневно с 9:00 до 21:00</dd></div>
+        <div><dt class="contact-dt">Адрес</dt><dd class="contact-dd-body">Республика Адыгея, Тахтамукайский р-н,<br>п. Супс, ул. Лесная, 12</dd></div>
+        <div><dt class="contact-dt">Почта</dt><dd class="contact-dd"><a href="mailto:hello@lesnaya-tish.ru" style="font-size:1.5rem">hello@lesnaya-tish.ru</a></dd></div>
       </dl>
     </div>
   </div>
@@ -1496,159 +1488,45 @@ footer {
 
 </main>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-inner">
     <p>© 2026 Лесная Тишь. Все права защищены.</p>
-    <p>База отдыха в Адыгее</p>
+    <p class="footer-credit">Сайт разработан студией <a href="https://mccbrand.ru" target="_blank" rel="noopener noreferrer">МСС — маркетинговые сайты со смыслом</a></p>
   </div>
 </footer>
 
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Наверх">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
 <script>
-// Scroll-reveal
 const reveals = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      io.unobserve(e.target);
-    }
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
   });
 }, { threshold: 0.1 });
 reveals.forEach(el => io.observe(el));
 
-// Mobile nav
-document.getElementById('burger').addEventListener('click', () => {
-  document.getElementById('mobileNav').classList.add('open');
+document.getElementById('burger').addEventListener('click', () => document.getElementById('mobileNav').classList.add('open'));
+document.getElementById('navClose').addEventListener('click', () => document.getElementById('mobileNav').classList.remove('open'));
+function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
 });
-document.getElementById('navClose').addEventListener('click', closeMobileNav);
-function closeMobileNav() {
-  document.getElementById('mobileNav').classList.remove('open');
-}
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// ── HERO VIDEO REEL (iframe version) ──────────────────────────────────
-(function () {
-  const frames = Array.from(document.querySelectorAll('#heroReel iframe'));
-  const dots   = Array.from(document.querySelectorAll('#heroClips .hero-clip-dot'));
-  const CLIP_MS = 7000;
-  let cur = 0;
-  let timer = null;
-
-  function activateDot(idx) {
-    dots.forEach((d, i) => {
-      d.classList.toggle('active', i === idx);
-      const fill = d.querySelector('.fill');
-      fill.style.transition = 'none';
-      fill.style.width = '0%';
-    });
-    const activeFill = dots[idx].querySelector('.fill');
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        activeFill.style.transition = `width ${CLIP_MS}ms linear`;
-        activeFill.style.width = '100%';
-      });
-    });
-  }
-
-  function goTo(idx) {
-    clearTimeout(timer);
-    frames[cur].style.opacity = '0';
-    cur = idx % frames.length;
-    frames[cur].style.opacity = '1';
-    frames[cur].src = frames[cur].src;
-    activateDot(cur);
-    timer = setTimeout(() => goTo(cur + 1), CLIP_MS);
-  }
-
-  dots.forEach((d, i) => {
-    d.addEventListener('click', () => goTo(i));
+document.querySelectorAll('.scroll-to-contact').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
   });
-
-  goTo(0);
-})();
-
-// Sound player simulation (Web Audio API ambient tones)
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let currentSource = null;
-let currentGain = null;
-let currentBtn = null;
-
-function createAmbientNoise(type) {
-  // Forest: layered noise with birds/wind feel
-  // Fire: crackling low freq
-  // Rain: white noise
-  const bufferSize = 4096;
-  const node = audioCtx.createScriptProcessor(bufferSize, 1, 1);
-  
-  const gainNode = audioCtx.createGain();
-  gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
-  gainNode.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 1.5);
-  
-  // EQ filter to shape sound
-  const filter = audioCtx.createBiquadFilter();
-  if (type === 'forest') {
-    filter.type = 'bandpass';
-    filter.frequency.value = 800;
-    filter.Q.value = 0.3;
-  } else if (type === 'fire') {
-    filter.type = 'lowpass';
-    filter.frequency.value = 500;
-    filter.Q.value = 1;
-  } else {
-    filter.type = 'highpass';
-    filter.frequency.value = 2000;
-    filter.Q.value = 0.1;
-  }
-
-  node.onaudioprocess = (e) => {
-    const out = e.outputBuffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      out[i] = (Math.random() * 2 - 1);
-      if (type === 'fire') {
-        // Add crackle bursts
-        if (Math.random() < 0.002) out[i] *= 8;
-      }
-    }
-  };
-  node.connect(filter);
-  filter.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
-  return { node, gainNode };
-}
-
-function stopCurrent() {
-  if (currentGain) {
-    currentGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.8);
-    const g = currentGain;
-    setTimeout(() => { try { g.disconnect(); } catch(e){} }, 1000);
-  }
-  if (currentSource) {
-    setTimeout(() => { try { currentSource.disconnect(); } catch(e){} }, 1000);
-  }
-  if (currentBtn) {
-    currentBtn.classList.remove('playing');
-    currentBtn.setAttribute('aria-pressed', 'false');
-    currentBtn.querySelector('.play-icon').style.display = '';
-    currentBtn.querySelector('.pause-icon').style.display = 'none';
-  }
-  currentSource = null; currentGain = null; currentBtn = null;
-}
-
-document.querySelectorAll('.sound-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    audioCtx.resume();
-    const type = btn.dataset.sound;
-    const isPlaying = btn.classList.contains('playing');
-    stopCurrent();
-    if (!isPlaying) {
-      const { node, gainNode } = createAmbientNoise(type);
-      currentSource = node; currentGain = gainNode; currentBtn = btn;
-      btn.classList.add('playing');
-      btn.setAttribute('aria-pressed', 'true');
-      btn.querySelector('.play-icon').style.display = 'none';
-      btn.querySelector('.pause-icon').style.display = '';
-    }
-  });
+});
+document.getElementById('scrollToCabins').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.querySelector('#cabins').scrollIntoView({ behavior: 'smooth' });
 });
 </script>
 </body>
